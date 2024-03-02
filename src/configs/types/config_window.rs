@@ -1,9 +1,9 @@
 use iced::window::Position;
 use serde::{Deserialize, Serialize};
-
+/*
 #[cfg(not(test))]
 use crate::SNIFFNET_LOWERCASE;
-
+*/
 #[derive(Serialize, Deserialize, Copy, Clone, PartialEq, Debug)]
 pub struct ConfigWindow {
     pub position: (i32, i32),
@@ -14,18 +14,17 @@ impl ConfigWindow {
     const FILE_NAME: &'static str = "window";
     #[cfg(not(test))]
     pub fn load() -> Self {
-        if let Ok(window) = confy::load::<ConfigWindow>(SNIFFNET_LOWERCASE, Self::FILE_NAME) {
+        if let Ok(window) = crate::utils::confy_proxy_load::<ConfigWindow>(Self::FILE_NAME) {
             window
         } else {
-            confy::store(SNIFFNET_LOWERCASE, Self::FILE_NAME, ConfigWindow::default())
-                .unwrap_or(());
+            crate::utils::confy_proxy_store(Self::FILE_NAME, ConfigWindow::default()).unwrap_or(());
             ConfigWindow::default()
         }
     }
 
     #[cfg(not(test))]
     pub fn store(self) {
-        confy::store(SNIFFNET_LOWERCASE, Self::FILE_NAME, self).unwrap_or(());
+        crate::utils::confy_proxy_store(Self::FILE_NAME, self).unwrap_or(());
     }
 }
 

@@ -5,8 +5,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::gui::styles::types::gradient_type::GradientType;
 use crate::notifications::types::notifications::Notifications;
+/*
 #[cfg(not(test))]
 use crate::SNIFFNET_LOWERCASE;
+*/
 use crate::{Language, StyleType};
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
@@ -27,22 +29,18 @@ impl ConfigSettings {
 
     #[cfg(not(test))]
     pub fn load() -> Self {
-        if let Ok(settings) = confy::load::<ConfigSettings>(SNIFFNET_LOWERCASE, Self::FILE_NAME) {
+        if let Ok(settings) = crate::utils::confy_proxy_load::<ConfigSettings>(Self::FILE_NAME) {
             settings
         } else {
-            confy::store(
-                SNIFFNET_LOWERCASE,
-                Self::FILE_NAME,
-                ConfigSettings::default(),
-            )
-            .unwrap_or(());
+            crate::utils::confy_proxy_store(Self::FILE_NAME, ConfigSettings::default())
+                .unwrap_or(());
             ConfigSettings::default()
         }
     }
 
     #[cfg(not(test))]
     pub fn store(self) {
-        confy::store(SNIFFNET_LOWERCASE, Self::FILE_NAME, self).unwrap_or(());
+        crate::utils::confy_proxy_store(Self::FILE_NAME, self).unwrap_or(());
     }
 }
 

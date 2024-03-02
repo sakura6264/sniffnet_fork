@@ -8,9 +8,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::networking::types::my_device::MyDevice;
 use crate::networking::types::my_link_type::MyLinkType;
+/*
 #[cfg(not(test))]
 use crate::SNIFFNET_LOWERCASE;
-
+ */
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct ConfigDevice {
     pub device_name: String,
@@ -37,18 +38,17 @@ impl ConfigDevice {
 
     #[cfg(not(test))]
     pub fn load() -> Self {
-        if let Ok(device) = confy::load::<ConfigDevice>(SNIFFNET_LOWERCASE, Self::FILE_NAME) {
+        if let Ok(device) = crate::utils::confy_proxy_load::<ConfigDevice>(Self::FILE_NAME) {
             device
         } else {
-            confy::store(SNIFFNET_LOWERCASE, Self::FILE_NAME, ConfigDevice::default())
-                .unwrap_or(());
+            crate::utils::confy_proxy_store(Self::FILE_NAME, ConfigDevice::default()).unwrap_or(());
             ConfigDevice::default()
         }
     }
 
     #[cfg(not(test))]
     pub fn store(self) {
-        confy::store(SNIFFNET_LOWERCASE, Self::FILE_NAME, self).unwrap_or(());
+        crate::utils::confy_proxy_store(Self::FILE_NAME, self).unwrap_or(());
     }
 
     pub fn to_my_device(&self) -> MyDevice {
