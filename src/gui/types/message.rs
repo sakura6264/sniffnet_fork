@@ -1,5 +1,3 @@
-use iced::font;
-
 use crate::gui::components::types::my_modal::MyModal;
 use crate::gui::pages::types::running_page::RunningPage;
 use crate::gui::pages::types::settings_page::SettingsPage;
@@ -89,8 +87,6 @@ pub enum Message {
     ArrowPressed(bool),
     /// Emit when the main window be focused
     WindowFocused,
-    /// Result after loading a custom font
-    FontLoaded(Result<(), font::Error>),
     /// Enable or disable gradients
     GradientsSelection(GradientType),
     /// Set UI scale factor
@@ -103,12 +99,16 @@ pub enum Message {
     CustomCountryDb(String),
     /// The ASN MMDB custom path has been updated
     CustomAsnDb(String),
-    // /// The path for the output report has been updated
-    // CustomReport(String),
     /// Save the configurations of the app and quit
     CloseRequested,
     /// Copies the given string to clipboard
     CopyIp(String),
     /// Launch a new file dialog
     OpenFile(String, FileInfo, fn(String) -> Message),
+    /// Toggle export pcap file
+    ToggleExportPcap,
+    /// The output PCAP directory has been updated
+    OutputPcapDir(String),
+    /// The output PCAP file name has been updated
+    OutputPcapFile(String),
 }

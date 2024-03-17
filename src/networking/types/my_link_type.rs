@@ -1,5 +1,5 @@
 use iced::widget::Column;
-use iced::{Font, Renderer};
+use iced::Font;
 use pcap::Linktype;
 
 use crate::gui::styles::text::TextType;
@@ -8,7 +8,7 @@ use crate::translations::translations_3::link_type_translation;
 use crate::{Language, StyleType};
 
 /// Currently supported link types
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub enum MyLinkType {
     Null(Linktype),
     Ethernet(Linktype),
@@ -17,6 +17,7 @@ pub enum MyLinkType {
     IPv4(Linktype),
     IPv6(Linktype),
     Unsupported(Linktype),
+    #[default]
     NotYetAssigned,
 }
 
@@ -61,7 +62,7 @@ impl MyLinkType {
         self,
         language: Language,
         font: Font,
-    ) -> Column<'static, Message, Renderer<StyleType>> {
+    ) -> Column<'static, Message, StyleType> {
         match self {
             Self::Null(l)
             | Self::Ethernet(l)

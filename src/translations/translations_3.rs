@@ -1,7 +1,6 @@
 #![allow(clippy::match_same_arms)]
 
 use iced::widget::Text;
-use iced::Renderer;
 
 use crate::translations::translations::network_adapter_translation;
 use crate::{Language, StyleType};
@@ -105,7 +104,7 @@ pub fn link_type_translation(language: Language) -> &'static str {
 pub fn unsupported_link_type_translation(
     language: Language,
     adapter: &str,
-) -> Text<'static, Renderer<StyleType>> {
+) -> Text<'static, StyleType> {
     let mut string = match language {
         Language::EN => "The link type associated with this adapter is not supported by Sniffnet yet...",
         Language::ES => "La conexión asociada con este adaptador aún no esta implementada en Sniffnet...",
@@ -151,5 +150,38 @@ pub fn service_translation(language: Language) -> &'static str {
         Language::ES => "Servicio",
         Language::IT => "Servizio",
         _ => "Service",
+    }
+}
+
+pub fn export_capture_translation(language: Language) -> &'static str {
+    match language {
+        Language::EN => "Export capture file",
+        Language::IT => "Esporta file di cattura",
+        _ => "Export capture file",
+    }
+}
+
+// (a filesystem directory)
+pub fn directory_translation(language: Language) -> &'static str {
+    match language {
+        Language::EN => "Directory",
+        Language::IT => "Cartella",
+        _ => "Directory",
+    }
+}
+
+pub fn select_directory_translation(language: Language) -> &'static str {
+    match language {
+        Language::EN => "Select destination directory",
+        Language::IT => "Seleziona cartella di destinazione",
+        _ => "Select destination directory",
+    }
+}
+
+pub fn file_name_translation(language: Language) -> &'static str {
+    match language {
+        Language::EN => "File name",
+        Language::IT => "Nome del file",
+        _ => "File name",
     }
 }

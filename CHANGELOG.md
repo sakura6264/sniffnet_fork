@@ -5,6 +5,7 @@ All Sniffnet releases with the relative changes are documented in this file.
 ## [UNRELEASED]
 - Added support for ICMP connections and messages ([#417](https://github.com/GyulyVGC/sniffnet/pull/417) — fixes [#288](https://github.com/GyulyVGC/sniffnet/issues/288))
 - Added capability to identify 6000+ upper layer services, protocols, trojans, and worms ([#450](https://github.com/GyulyVGC/sniffnet/pull/450) — fixes [#374](https://github.com/GyulyVGC/sniffnet/issues/374))
+- Added feature to optionally export the analysis as a PCAP file with a custom path ([#473](https://github.com/GyulyVGC/sniffnet/pull/473) — fixes [#162](https://github.com/GyulyVGC/sniffnet/issues/162) and [#291](https://github.com/GyulyVGC/sniffnet/issues/291))
 - Introduced new filtering capabilities to allow users specify custom values of ports and IP addresses ([#414](https://github.com/GyulyVGC/sniffnet/pull/414))
 - The size of text and widgets can now be customised by setting a proper zoom value (fixes [#202](https://github.com/GyulyVGC/sniffnet/issues/202) and [#344](https://github.com/GyulyVGC/sniffnet/issues/344))
 - Added possibility to totally customize the app's theme via styles defined in TOML files ([#286](https://github.com/GyulyVGC/sniffnet/pull/286) and [#419](https://github.com/GyulyVGC/sniffnet/pull/419))
@@ -23,6 +24,7 @@ All Sniffnet releases with the relative changes are documented in this file.
 - Settings "Language" tab has been removed. Language selection and other options are now included in a new settings tab "General" ([#365](https://github.com/GyulyVGC/sniffnet/pull/365))
 - Updated Portuguese translation to v1.2 ([#398](https://github.com/GyulyVGC/sniffnet/pull/398))
 - Cleaned code implementing the concept of first class theming ([#339](https://github.com/GyulyVGC/sniffnet/pull/339))
+- Migrate to Iced 0.12 ([#470](https://github.com/GyulyVGC/sniffnet/pull/470))
 - Added documentation about Sniffnet installation on Nix and Tiny Core Linux (respectively [#394](https://github.com/GyulyVGC/sniffnet/pull/394) and [#341](https://github.com/GyulyVGC/sniffnet/pull/341))
 - General aesthetic improvements
 - Fixed bug about not delivered favorite notifications in presence of old outgoing connections
