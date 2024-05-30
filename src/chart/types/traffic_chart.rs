@@ -1,12 +1,13 @@
 //! This module defines the behavior of the `TrafficChart` struct, used to display chart in GUI run page
 
+use std::cmp::min;
+use std::ops::Range;
+
 use iced::widget::Container;
 use iced::Element;
 use plotters::prelude::*;
 use plotters_iced::{Chart, ChartBuilder, ChartWidget, DrawingBackend};
 use splines::Spline;
-use std::cmp::min;
-use std::ops::Range;
 
 use crate::gui::app::FONT_FAMILY_NAME;
 use crate::gui::styles::style_constants::CHARTS_LINE_BORDER;
@@ -42,6 +43,8 @@ pub struct TrafficChart {
     pub chart_type: ChartType,
     /// Style of the chart
     pub style: StyleType,
+    /// Whether the chart is for the thumbnail page
+    pub thumbnail: bool,
 }
 
 impl TrafficChart {
@@ -59,6 +62,7 @@ impl TrafficChart {
             language,
             chart_type: ChartType::Bytes,
             style,
+            thumbnail: false,
         }
     }
 
@@ -76,6 +80,24 @@ impl TrafficChart {
 
     pub fn change_style(&mut self, style: StyleType) {
         self.style = style;
+    }
+
+    fn set_margins_and_label_areas<DB: DrawingBackend>(
+        &self,
+        chart_builder: &mut ChartBuilder<DB>,
+    ) {
+        if self.thumbnail {
+            chart_builder.margin_right(0);
+            chart_builder.margin_left(0);
+            chart_builder.margin_bottom(0);
+            chart_builder.margin_top(5);
+        } else {
+            chart_builder
+                .margin_right(25)
+                .margin_top(6)
+                .set_label_area_size(LabelAreaPosition::Left, 55)
+                .set_label_area_size(LabelAreaPosition::Bottom, 40);
+        }
     }
 
     fn x_axis_range(&self) -> Range<f32> {
@@ -156,22 +178,22 @@ impl Chart<Message> for TrafficChart {
             return;
         }
 
-        chart_builder
-            .margin_right(25)
-            .margin_top(6)
-            .set_label_area_size(LabelAreaPosition::Left, 55)
-            .set_label_area_size(LabelAreaPosition::Bottom, 40);
+        self.set_margins_and_label_areas(&mut chart_builder);
 
         let x_axis_range = self.x_axis_range();
         let y_axis_range = self.y_axis_range();
 
-        let x_labels = if self.ticks == 1 {
+        let x_labels = if self.ticks == 1 || self.thumbnail {
             0
         } else {
             self.ticks as usize
         };
         #[allow(clippy::cast_possible_truncation, clippy::cast_sign_loss)]
-        let y_labels = 1 + (y_axis_range.end - y_axis_range.start) as usize;
+        let y_labels = if self.thumbnail {
+            0
+        } else {
+            1 + (y_axis_range.end - y_axis_range.start) as usize
+        };
 
         let mut chart = chart_builder
             .build_cartesian_2d(x_axis_range, y_axis_range)
@@ -212,14 +234,16 @@ impl Chart<Message> for TrafficChart {
         }
 
         // chart legend
-        chart
-            .configure_series_labels()
-            .position(SeriesLabelPosition::UpperRight)
-            .background_style(buttons_color.mix(0.6))
-            .border_style(buttons_color.stroke_width(CHARTS_LINE_BORDER * 2))
-            .label_font(self.font(13.5))
-            .draw()
-            .expect("Error drawing graph");
+        if !self.thumbnail {
+            chart
+                .configure_series_labels()
+                .position(SeriesLabelPosition::UpperRight)
+                .background_style(buttons_color.mix(0.6))
+                .border_style(buttons_color.stroke_width(CHARTS_LINE_BORDER * 2))
+                .label_font(self.font(13.5))
+                .draw()
+                .expect("Error drawing graph");
+        }
     }
 }
 
@@ -242,8 +266,9 @@ fn sample_spline(spline: &Spline<f32, f32>) -> Vec<(f32, f32)> {
 
 #[cfg(test)]
 mod tests {
-    use crate::chart::types::traffic_chart::{sample_spline, PTS};
     use splines::{Interpolation, Key, Spline};
+
+    use crate::chart::types::traffic_chart::{sample_spline, PTS};
 
     #[test]
     fn test_spline_samples() {

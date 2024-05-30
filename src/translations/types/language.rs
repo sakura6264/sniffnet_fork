@@ -104,6 +104,21 @@ impl Language {
         })))
         .width(FLAGS_WIDTH_BIG)
     }
+
+    pub fn is_up_to_date(self) -> bool {
+        matches!(
+            self,
+            Language::FR
+                | Language::EN
+                | Language::IT
+                | Language::DE
+                | Language::PL
+                | Language::RU
+                | Language::RO
+                | Language::JA
+                | Language::UZ
+        )
+    }
 }
 
 impl fmt::Display for Language {

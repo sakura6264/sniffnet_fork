@@ -11,6 +11,7 @@ pub enum Icon {
     AudioHigh,
     AudioMute,
     Bin,
+    Book,
     BytesThreshold,
     Clock,
     Copy,
@@ -39,6 +40,8 @@ pub enum Icon {
     SortDescending,
     SortNeutral,
     Star,
+    ThumbnailOpen,
+    ThumbnailClose,
     Warning,
     Waves,
 }
@@ -83,6 +86,9 @@ impl Icon {
             Icon::SortDescending => 'l',
             Icon::SortNeutral => 'n',
             Icon::OpenLink => 'o',
+            Icon::ThumbnailOpen => 's',
+            Icon::ThumbnailClose => 'r',
+            Icon::Book => 'B',
         }
     }
 
