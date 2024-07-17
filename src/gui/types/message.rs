@@ -115,4 +115,8 @@ pub enum Message {
     ToggleThumbnail(bool),
     /// Drag the window
     Drag,
+    /// Ctrl+T keys have been pressed
+    CtrlTPressed,
+    /// Edit scale factor via keyboard shortcut
+    ScaleFactorShortcut(bool),
 }

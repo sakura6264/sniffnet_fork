@@ -475,6 +475,24 @@
         "ideas",
         "content"
       ]
+    },
+    {
+      "login": "CosminPerRam",
+      "name": "CosminPerRam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7972857?v=4",
+      "profile": "http://cosminperram.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "corneliusroemer",
+      "name": "Cornelius Roemer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25161793?v=4",
+      "profile": "https://github.com/corneliusroemer",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
