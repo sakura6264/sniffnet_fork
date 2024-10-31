@@ -1,5 +1,7 @@
 <div align="center">
-<a href="https://sniffnet.net"><img alt="" title="Sniffnet" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/header_repository.png" width="95%"/></a>
+<picture>
+<img alt="" title="Sniffnet" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/header_repository.png" width="95%"/>
+</picture>
 
 <a href="#download"><img alt="" title="Download" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/badges/download.svg"/></a>
 <a href="https://github.com/GyulyVGC/sniffnet/blob/main/ROADMAP.md"><img alt="" title="Roadmap" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/badges/roadmap.svg"/></a>
@@ -10,13 +12,13 @@ Application to comfortably monitor your Internet traffic <br>
 Cross-platform, Intuitive, Reliable
 
 Translated in:<br>
-🇨🇳 🇩🇪 🇫🇷 🇷🇺 🇵🇹 🇪🇦 🇮🇹 🇵🇱 [+&nbsp;11&nbsp;more&nbsp;languages](https://github.com/GyulyVGC/sniffnet/issues/60)
+🇨🇳 🇩🇪 🇫🇷 🇷🇺 🇵🇹 🇪🇦 🇮🇹 🇵🇱 [+&nbsp;12&nbsp;more&nbsp;languages](https://github.com/GyulyVGC/sniffnet/issues/60)
 </div>
 
 <p>
-<a href="#x">
+<picture>
 <img alt="" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/hr.png" width="100%"/>
-</a>
+</picture>
 </p>
 
 <div align="center">
@@ -28,9 +30,9 @@ Translated in:<br>
 </div>
 
 <p>
-<a href="#x">
+<picture>
 <img alt="" src="https://raw.githubusercontent.com/GyulyVGC/sniffnet/main/resources/repository/hr.png" width="100%"/>
-</a>
+</picture>
 </p>
 
 
@@ -76,7 +78,7 @@ Follow this method only if you have [Rust installed](https://www.rust-lang.org/t
 In this case, the application binary can be built and installed with:
 
 ```sh
-cargo install sniffnet
+cargo install sniffnet --locked
 ```
 
 </details>
